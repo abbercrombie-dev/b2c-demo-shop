@@ -1,0 +1,23 @@
+{% extends template('page-layout-main') %}
+
+{% define config = {
+    name: 'contact-us-input'
+} %}
+
+{% define data = {
+    contactUsForm: _view.contactUsForm
+} %}
+
+
+{% block content %}
+
+    {{ form_start(data.contactUsForm) }}
+    {{ form_label(data.contactUsForm.name) }}
+    {{ form_widget(data.contactUsForm.name) }}
+    {{ form_label(data.contactUsForm.message) }}
+    {{ form_widget(data.contactUsForm.message) }}
+
+    {% include atom('contact-us-input','HelloSpryker') only %}
+    {{ form_end(data.contactUsForm) }}
+
+{% endblock %}
