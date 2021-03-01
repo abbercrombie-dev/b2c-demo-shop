@@ -6,46 +6,25 @@
 {% endblock %}
 
 {% block content %}
-    <table>
+
+    <table class="table text-center">
         <thead>
         <tr>
-            <th>id</th>
-            <th>name</th>
-            <th>message</th>
+            <th class="text-center">id</th>
+            <th class="text-center">name</th>
+            <th class="text-center">message</th>
         </tr>
         </thead>
         <tbody>
         {% for contactUsDataItem in contactUsData %}
             <tr>
-                <td>{{ contactUsDataItem['IdMessage'] }}</td>
-                <td>{{ contactUsDataItem['Name'] }}</td>
-                <td>{{ contactUsDataItem['Message'] }}</td>
+                <td class="table-bordered">{{ contactUsDataItem.IdMessage }}</td>
+                <td class="table-bordered">{{ contactUsDataItem.Name }}</td>
+                <td class="table-bordered">{{ contactUsDataItem.Message }}</td>
             </tr>
         {% endfor %}
 
         </tbody>
     </table>
-
-    <style>
-        table,
-        td {
-            border: 1px solid #333;
-        }
-
-        thead,
-        tfoot {
-            background-color: #333;
-            color: #fff;
-        }
-
-        table {
-            width: 100%;
-
-        }
-        th,table{
-            text-align: center;
-        }
-
-    </style>
 
 {% endblock %}

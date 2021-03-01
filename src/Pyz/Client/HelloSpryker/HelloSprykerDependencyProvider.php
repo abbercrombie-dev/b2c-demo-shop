@@ -12,8 +12,6 @@ use Spryker\Client\Kernel\Container;
 
 class HelloSprykerDependencyProvider extends AbstractDependencyProvider
 {
-    public const FACADE_HELLO_SPRYKER = 'FACADE_HELLO_SPRYKER';
-
     public const CLIENT_ZED_REQUEST = 'CLIENT_ZED_REQUEST';
 
     /**
@@ -35,9 +33,9 @@ class HelloSprykerDependencyProvider extends AbstractDependencyProvider
      */
     protected function addZedRequestClient(Container $container)
     {
-        $container[static::CLIENT_ZED_REQUEST] = function (Container $container) {
+        $container->set(static::CLIENT_ZED_REQUEST, function (Container $container) {
             return $container->getLocator()->zedRequest()->client();
-        };
+        });
 
         return $container;
     }

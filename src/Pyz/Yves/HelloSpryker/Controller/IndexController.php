@@ -7,7 +7,7 @@
 
 namespace Pyz\Yves\HelloSpryker\Controller;
 
-use Generated\Shared\Transfer\PyzContactUsEntityTransfer;
+use Generated\Shared\Transfer\ContactUsTransfer;
 use Pyz\Yves\HelloSpryker\Plugin\Router\HelloSprykerRouteProviderPlugin;
 use Spryker\Yves\Kernel\Controller\AbstractController;
 use Symfony\Component\Form\FormInterface;
@@ -26,7 +26,7 @@ class IndexController extends AbstractController
     /**
      * @param \Symfony\Component\HttpFoundation\Request $request
      *
-     * @return \Spryker\Yves\Kernel\View\View
+     * @return \Spryker\Yves\Kernel\View\View|\Symfony\Component\HttpFoundation\RedirectResponse;
      */
     public function indexAction(Request $request)
     {
@@ -68,19 +68,23 @@ class IndexController extends AbstractController
      * @param \Symfony\Component\Form\FormInterface $contactUsForm
      * @param \Symfony\Component\HttpFoundation\Request $request
      *
-     * @return void
+     * @return bool
      */
     protected function handleContactUsForm(FormInterface $contactUsForm, Request $request)
     {
         if (!$contactUsForm->isValid()) {
-            $this->addErrorMessage(self::FAIL_MESSAGE);
-        } else {
-            $contactUsTransfer = new PyzContactUsEntityTransfer();
-            $contactUsTransfer->fromArray($contactUsForm->getData(), true);
-            $this->getClient()
-                ->saveContactUsData($contactUsTransfer);
+            $this->addErrorMessage(static::FAIL_MESSAGE);
 
-            $this->addSuccessMessage(self::SUCCESS_MESSAGE);
+            return false;
         }
+
+        $contactUsTransfer = new ContactUsTransfer();
+        $contactUsTransfer->fromArray($contactUsForm->getData(), true);
+        $this->getClient()
+            ->saveContactUsData($contactUsTransfer);
+
+        $this->addSuccessMessage(static::SUCCESS_MESSAGE);
+
+        return true;
     }
 }

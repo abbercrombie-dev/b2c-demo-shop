@@ -7,10 +7,14 @@
 
 namespace Pyz\Client\HelloSpryker\Zed;
 
+use Generated\Shared\Transfer\ContactUsTransfer;
+
 interface HelloSprykerStubInterface
 {
-//    /**
-//     * @return \Generated\Shared\Transfer\PyzContactUsEntityTransfer
-//     */
-//    public function getContactUsData();
+    /**
+     * @param \Generated\Shared\Transfer\ContactUsTransfer $contactUsEntityTransfer
+     *
+     * @return \Generated\Shared\Transfer\ContactUsTransfer
+     */
+    public function saveContactUsData(ContactUsTransfer $contactUsEntityTransfer): ContactUsTransfer;
 }

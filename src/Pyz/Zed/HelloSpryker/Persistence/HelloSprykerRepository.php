@@ -15,14 +15,15 @@ use Spryker\Zed\Kernel\Persistence\AbstractRepository;
 class HelloSprykerRepository extends AbstractRepository implements HelloSprykerRepositoryInterface
 {
     /**
-     * @return \Generated\Shared\Transfer\PyzContactUsEntityTransfer
+     * @return \Generated\Shared\Transfer\ContactUsTransfer[]
      */
-    public function all()
+    public function getContactUsDataSet(): array
     {
-        $blogQuery = $this->getFactory()
+        $contactUsQuery = $this->getFactory()
             ->createHelloSprykerQuery();
 
-        return $this->buildQueryFromCriteria($blogQuery)
-            ->find();
+        return $this->getFactory()
+            ->createContactUsMapper()
+            ->mapContactUsData($contactUsQuery->find()->getData());
     }
 }

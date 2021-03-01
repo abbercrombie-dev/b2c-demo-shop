@@ -8,6 +8,7 @@
 namespace Pyz\Zed\HelloSpryker\Persistence;
 
 use Orm\Zed\HelloSpryker\Persistence\PyzContactUsQuery;
+use Pyz\Zed\HelloSpryker\Persistence\Propel\Mapper\ContactUsMapper;
 use Spryker\Zed\Kernel\Persistence\AbstractPersistenceFactory;
 
 /**
@@ -24,5 +25,13 @@ class HelloSprykerPersistenceFactory extends AbstractPersistenceFactory
     public function createHelloSprykerQuery()
     {
         return PyzContactUsQuery::create();
+    }
+
+    /**
+     * @return \Pyz\Zed\HelloSpryker\Persistence\Propel\Mapper\ContactUsMapper
+     */
+    public function createContactUsMapper()
+    {
+        return new ContactUsMapper();
     }
 }

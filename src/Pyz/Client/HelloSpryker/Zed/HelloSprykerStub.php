@@ -7,7 +7,7 @@
 
 namespace Pyz\Client\HelloSpryker\Zed;
 
-use Generated\Shared\Transfer\PyzContactUsEntityTransfer;
+use Generated\Shared\Transfer\ContactUsTransfer;
 use Spryker\Client\ZedRequest\Stub\ZedRequestStub;
 
 /**
@@ -18,15 +18,15 @@ use Spryker\Client\ZedRequest\Stub\ZedRequestStub;
 class HelloSprykerStub extends ZedRequestStub implements HelloSprykerStubInterface
 {
     /**
-     * @param \Generated\Shared\Transfer\PyzContactUsEntityTransfer $contactUsEntityTransfer
+     * @param \Generated\Shared\Transfer\ContactUsTransfer $contactUsTransfer
      *
-     * @return \Spryker\Shared\Kernel\Transfer\TransferInterface
+     * @return \Generated\Shared\Transfer\ContactUsTransfer
      */
-    public function saveContactUsData(PyzContactUsEntityTransfer $contactUsEntityTransfer)
+    public function saveContactUsData(ContactUsTransfer $contactUsTransfer): ContactUsTransfer
     {
         return $this->zedStub->call(
             '/hello-spryker/gateway/save-contact-us-data',
-            $contactUsEntityTransfer
+            $contactUsTransfer
         );
     }
 }

@@ -7,34 +7,32 @@
 
 namespace Pyz\Zed\HelloSpryker\Business;
 
-use Generated\Shared\Transfer\PyzContactUsEntityTransfer;
+use Generated\Shared\Transfer\ContactUsTransfer;
 use Spryker\Zed\Kernel\Business\AbstractFacade;
 
 /**
- * @method \Pyz\Zed\HelloSpryker\Business\HelloSprykerBusinessFactory getFactory()
  * @method \Pyz\Zed\HelloSpryker\Persistence\HelloSprykerRepositoryInterface getRepository()
  * @method \Pyz\Zed\HelloSpryker\Persistence\HelloSprykerEntityManagerInterface getEntityManager()
  */
 class HelloSprykerFacade extends AbstractFacade implements HelloSprykerFacadeInterface
 {
     /**
-     * @return \Generated\Shared\Transfer\PyzContactUsEntityTransfer
+     * @return \Generated\Shared\Transfer\ContactUsTransfer[]
      */
-    public function getContactUsData()
+    public function getContactUsData(): array
     {
-        return $this->getFactory()
-            ->createContactUsReader()
-            ->getContactUsData();
+        return $this->getRepository()
+            ->getContactUsDataSet();
     }
 
     /**
-     * @param \Generated\Shared\Transfer\PyzContactUsEntityTransfer $contactUsEntityTransfer
-     * @return PyzContactUsEntityTransfer
+     * @param \Generated\Shared\Transfer\ContactUsTransfer $contactUsEntityTransfer
+     *
+     * @return \Generated\Shared\Transfer\ContactUsTransfer
      */
-    public function saveContactUsData(\Generated\Shared\Transfer\PyzContactUsEntityTransfer $contactUsEntityTransfer)
+    public function saveContactUsData(ContactUsTransfer $contactUsEntityTransfer)
     {
-       return $this->getFactory()
-            ->createContactUsWriter()
-            ->save($contactUsEntityTransfer);
+        return $this->getEntityManager()
+            ->saveContactUsData($contactUsEntityTransfer);
     }
 }

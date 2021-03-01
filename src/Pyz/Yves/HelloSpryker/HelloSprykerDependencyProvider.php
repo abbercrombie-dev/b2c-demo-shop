@@ -21,8 +21,6 @@ class HelloSprykerDependencyProvider extends AbstractBundleDependencyProvider
      */
     public function provideDependencies(Container $container): Container
     {
-//        $container = parent::provideDependencies($container);
-
         $container = $this->addContactUsFacade($container);
 
         return $container;
@@ -35,14 +33,9 @@ class HelloSprykerDependencyProvider extends AbstractBundleDependencyProvider
      */
     protected function addContactUsFacade(Container $container): Container
     {
-//        $container->set(static::FACADE_HELLO_SPRYKER, function (Container $container) {
-//            return $container->getLocator()->helloSpryker()->facade();
-//        });
-//
-//        return $container;
-        $container[static::FACADE_HELLO_SPRYKER] = function (Container $container) {
+        $container->set(static::FACADE_HELLO_SPRYKER, function (Container $container) {
             $container->getLocator()->helloSpryker()->facade();
-        };
+        });
 
         return $container;
     }
